@@ -21,6 +21,8 @@ import org.checkerframework.checker.units.qual.A;
 import top.theillusivec4.curios.api.event.CurioAttributeModifierEvent;
 
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 import static dot.lighteater.upgrade_scrolls.UnionsUpgradeScrolls.LOGGER;
 
@@ -105,7 +107,7 @@ public class AffixProcedure {
 
             ResourceLocation modifierId = ResourceLocation.fromNamespaceAndPath(
                     "upgrade_scrolls",
-                    affix.getName() + "_" + attr.getEndString() + "_bonus"
+                    affix.getName() + "_" + getItemUUID(stack, attribute.toString()) + "_" + attr.getEndString() + "_bonus"
             );
 
             event.addModifier(attribute, new AttributeModifier(
@@ -158,7 +160,8 @@ public class AffixProcedure {
 
             ResourceLocation modifierId = ResourceLocation.fromNamespaceAndPath(
                     "upgrade_scrolls",
-                    affix.getName() + "_" + attr.getEndString() + "_bonus"
+                    affix.getName()
+                            + "_" + getItemUUID(stack, attribute.toString()) + "_" + attr.getEndString() + "_bonus"
             );
 
             event.addModifier(
@@ -171,5 +174,20 @@ public class AffixProcedure {
                     EquipmentSlotGroup.bySlot(slot)  // ✅ SAFE FIX
             );
         }
+    }
+
+    public static UUID getItemUUID(ItemStack stack, String attributeKey) {
+
+        CompoundTag tag = stack.get(ModDataComponents.AFFIX_DATA.get());
+        if (tag == null) return UUID.randomUUID(); // fallback (should rarely happen)
+
+        String base = tag.getString("upgrade_scrolls:item_uuid");
+
+        if (base.isEmpty()) {
+            base = UUID.randomUUID().toString();
+            tag.putString("upgrade_scrolls:item_uuid", base);
+        }
+
+        return UUID.nameUUIDFromBytes((base + attributeKey).getBytes());
     }
 }

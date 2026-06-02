@@ -93,8 +93,6 @@ public class CursedAttributeProcedure {
 
             if (tag.getDouble(streakKey) <= 0) return;
 
-            LOGGER.debug("Check?");
-
             event.addModifier(
                     Attributes.ARMOR,
                     new AttributeModifier(
