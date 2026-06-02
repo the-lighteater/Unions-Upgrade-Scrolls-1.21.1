@@ -131,6 +131,8 @@ dependencies {
     implementation "curse.maven:artifacts-312353:7875426"
     implementation "curse.maven:lendercataclysm-551586:8095590"
     implementation "curse.maven:lionfish-api-1001614:8094835"
+    implementation "curse.maven:apothic-attributes-898963:7445079"
+    implementation "curse.maven:placebo-283644:6926281"
 
     // Example mod dependency using a mod jar from ./libs with a flat dir repository
     // This maps to ./libs/coolmod-${mc_version}-${coolmod_version}.jar
