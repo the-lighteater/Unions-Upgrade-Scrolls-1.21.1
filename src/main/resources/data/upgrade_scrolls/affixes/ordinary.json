@@ -1,0 +1,82 @@
+{
+  "name": "ordinary",
+  "weight": 0.2,
+  "color": "GREEN",
+  "displayName": "Ordinary",
+  "disabled": false,
+  "tooltip": "tooltip.upgrade_scrolls.upgrade_scroll.line_ordinary",
+  "finalAffix": false,
+
+  "effects": {
+    "weapon": [
+      {
+        "attribute": "minecraft:generic.attack_speed",
+        "operation": "Multiplying",
+        "value": 0.1,
+        "endString": "swing"
+      },
+      {
+        "attribute": "minecraft:generic.attack_damage",
+        "operation": "Multiplying",
+        "value": 0.05,
+        "endString": "damage"
+      }
+    ],
+    "armor": [
+      {
+        "attribute": "minecraft:generic.armor",
+        "operation": "Multiplying",
+        "value": 0.05,
+        "endString": "armor"
+      },
+      {
+        "attribute": "minecraft:generic.max_health",
+        "operation": "Multiplying",
+        "value": 0.025,
+        "endString": "health"
+      }
+    ],
+    "shield": [
+      {
+        "attribute": "minecraft:generic.armor_toughness",
+        "operation": "Multiplying",
+        "value": 0.05,
+        "endString": "toughness"
+      },
+      {
+        "attribute": "minecraft:generic.knockback_resistance",
+        "operation": "Adding",
+        "value": 0.05,
+        "endString": "knockback"
+      }
+    ],
+    "bow": [
+      {
+        "attribute": "minecraft:generic.movement_speed",
+        "operation": "Multiplying",
+        "value": 0.05,
+        "endString": "speed"
+      },
+      {
+        "attribute": "forge:swim_speed",
+        "operation": "Multiplying",
+        "value": 0.1,
+        "endString": "swim"
+      }
+    ],
+    "curio": [
+      {
+        "attribute": "minecraft:generic.armor",
+        "operation": "Multiplying",
+        "value": 0.01,
+        "endString": "armor"
+      },
+      {
+        "attribute": "minecraft:generic.max_health",
+        "operation": "Multiplying",
+        "value": 0.01,
+        "endString": "health"
+      }
+    ]
+  }
+}

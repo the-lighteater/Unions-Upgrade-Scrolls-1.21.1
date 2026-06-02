@@ -1,0 +1,141 @@
+{
+  "itemGroup.upgrade_scrolls": "Union's Upgrade Scrolls",
+  "block.upgrade_scrolls.example_block": "Example Block",
+  "item.upgrade_scrolls.example_item": "Example Item",
+
+  "upgrade_scrolls.configuration.title": "Union's Upgrade Scrolls Configs",
+  "upgrade_scrolls.configuration.section.upgrade_scrolls.common.toml": "Union's Upgrade Scrolls Configs",
+  "upgrade_scrolls.configuration.section.upgrade_scrolls.common.toml.title": "Union's Upgrade Scrolls Configs",
+  "upgrade_scrolls.configuration.items": "Item List",
+  "upgrade_scrolls.configuration.logDirtBlock": "Log Dirt Block",
+  "upgrade_scrolls.configuration.magicNumberIntroduction": "Magic Number Text",
+  "upgrade_scrolls.configuration.magicNumber": "Magic Number",
+
+  "item.upgrade_scrolls.upgrade_scroll_0": "§eMysterious Scroll",
+  "item.upgrade_scrolls.upgrade_scroll_1": "§eCursed Scroll of the Magician [Weapon]",
+  "item.upgrade_scrolls.upgrade_scroll_2": "§eCursed Scroll of the Berserker [Weapon]",
+  "item.upgrade_scrolls.upgrade_scroll_3": "§eScroll of Modification [Weapon]",
+  "item.upgrade_scrolls.upgrade_scroll_4": "§eScroll of Modification [Helmet]",
+  "item.upgrade_scrolls.upgrade_scroll_5": "§eScroll of Modification [Chestplate]",
+  "item.upgrade_scrolls.upgrade_scroll_6": "§eScroll of Modification [Leggings]",
+  "item.upgrade_scrolls.upgrade_scroll_7": "§eScroll of Modification [Boots]",
+  "item.upgrade_scrolls.upgrade_scroll_8": "§eScroll of Modification [Shield]",
+  "item.upgrade_scrolls.upgrade_scroll_9": "§eCursed Scroll of the Guardian [Helmet]",
+  "item.upgrade_scrolls.upgrade_scroll_10": "§eCursed Scroll of the Guardian [Chestplate]",
+  "item.upgrade_scrolls.upgrade_scroll_11": "§eCursed Scroll of the Guardian [Leggings]",
+  "item.upgrade_scrolls.upgrade_scroll_12": "§eCursed Scroll of the Guardian [Boots]",
+  "item.upgrade_scrolls.upgrade_scroll_13": "§eCursed Scroll of the Guardian [Shield]",
+  "item.upgrade_scrolls.upgrade_scroll_14": "§eGolden Scroll of the Gods [Weapon]",
+  "item.upgrade_scrolls.upgrade_scroll_15": "§eGolden Scroll of the Gods [Shield]",
+  "item.upgrade_scrolls.upgrade_scroll_16": "§eGolden Scroll of the Gods [Helmet]",
+  "item.upgrade_scrolls.upgrade_scroll_17": "§eGolden Scroll of the Gods [Chestplate]",
+  "item.upgrade_scrolls.upgrade_scroll_18": "§eGolden Scroll of the Gods [Leggings]",
+  "item.upgrade_scrolls.upgrade_scroll_19": "§eGolden Scroll of the Gods [Boots]",
+  "item.upgrade_scrolls.upgrade_scroll_20": "§eGolden Mysterious Scroll",
+  "item.upgrade_scrolls.upgrade_scroll_21": "§eHoly Scroll",
+
+  "tooltip.upgrade_scrolls.upgrade_scroll_0.line1": "§7- Right click to inscribe this scroll with a",
+  "tooltip.upgrade_scrolls.upgrade_scroll_0.line2": "§7random powerful spell that can empower",
+  "tooltip.upgrade_scrolls.upgrade_scroll_0.line3": "§7your gear.",
+
+  "tooltip.upgrade_scrolls.upgrade_scroll_1-2.line1": "§7- Right click while holding any weapon or",
+  "tooltip.upgrade_scrolls.upgrade_scroll_1-2.line2": "§7tool in your main hand to attempt to roll",
+  "tooltip.upgrade_scrolls.upgrade_scroll_1-2.line3": "§7a level of this scroll's curse.",
+
+  "tooltip.upgrade_scrolls.upgrade_scroll_1.line4": "§7- Scroll of the Magician deals +2.5% magic",
+  "tooltip.upgrade_scrolls.upgrade_scroll_2.line4": "§7- Scroll of the Berserker deals +2.5% physical",
+
+  "tooltip.upgrade_scrolls.upgrade_scroll_1-2.line5": "§7damage per level, capping at level 15.",
+  "tooltip.upgrade_scrolls.upgrade_scroll_1-2.line6": "§7- Roll chances include:",
+  "tooltip.upgrade_scrolls.upgrade_scroll_1-2.line7": "§e* 80% Success",
+  "tooltip.upgrade_scrolls.upgrade_scroll_1-2.line8": "§c* 20% Lose Item (Unless Golden Scrolled)",
+
+  "tooltip.upgrade_scrolls.upgrade_scroll_3.line1": "§7- Right click while holding any weapon or tool",
+  "tooltip.upgrade_scrolls.upgrade_scroll_8.line1": "§7- Right click while holding any shield",
+  "tooltip.upgrade_scrolls.upgrade_scroll_3-8.line2": "§7in your main hand to roll a random affix.",
+
+  "tooltip.upgrade_scrolls.upgrade_scroll_4.line1": "§7- Right click while wearing any helmet to",
+  "tooltip.upgrade_scrolls.upgrade_scroll_5.line1": "§7- Right click while wearing any chestplate to",
+  "tooltip.upgrade_scrolls.upgrade_scroll_6.line1": "§7- Right click while wearing any leggings to",
+  "tooltip.upgrade_scrolls.upgrade_scroll_7.line1": "§7- Right click while wearing any boots to",
+  "tooltip.upgrade_scrolls.upgrade_scroll_4-7.line2": "§7roll a random affix.",
+
+  "tooltip.upgrade_scrolls.upgrade_scroll_3-8.line3": "§7- Affixes add additional stats and attributes",
+  "tooltip.upgrade_scrolls.upgrade_scroll_3-8.line4": "§7to your items.",
+  "tooltip.upgrade_scrolls.upgrade_scroll_3-8.line5": "§7- Roll chances include:",
+
+
+  "tooltip.upgrade_scrolls.upgrade_scroll_9.line1": "§7- Right click while wearing any helmet",
+  "tooltip.upgrade_scrolls.upgrade_scroll_10.line1": "§7- Right click while wearing any chestplate",
+  "tooltip.upgrade_scrolls.upgrade_scroll_11.line1": "§7- Right click while wearing any leggings",
+  "tooltip.upgrade_scrolls.upgrade_scroll_12.line1": "§7- Right click while wearing any boots",
+  "tooltip.upgrade_scrolls.upgrade_scroll_9-12.line2": "§7to attempt to roll a level of this",
+
+  "tooltip.upgrade_scrolls.upgrade_scroll_13.line1": "§7- Right click while holding any shield in your",
+  "tooltip.upgrade_scrolls.upgrade_scroll_13.line2": "§7main hand to attempt to roll a level of this",
+
+  "tooltip.upgrade_scrolls.upgrade_scroll_9-13.line3": "§7scroll's curse.",
+  "tooltip.upgrade_scrolls.upgrade_scroll_9-13.line4": "§7- Scroll of the Guardian adds +0.5 armor",
+  "tooltip.upgrade_scrolls.upgrade_scroll_9-13.line5": "§7per level, capping at level 15.",
+  "tooltip.upgrade_scrolls.upgrade_scroll_9-13.line6": "§7- Roll chances include:",
+  "tooltip.upgrade_scrolls.upgrade_scroll_9-13.line7": "§e* 80% Success",
+  "tooltip.upgrade_scrolls.upgrade_scroll_9-13.line8": "§c* 20% Lose Item (Unless Golden Scrolled)",
+
+  "tooltip.upgrade_scrolls.upgrade_scroll_14.line1": "§7- Right click while holding any weapon or tool",
+  "tooltip.upgrade_scrolls.upgrade_scroll_14.line2": "§7in your main hand to make it unbreakable.",
+
+  "tooltip.upgrade_scrolls.upgrade_scroll_15.line1": "§7- Right click while holding any shield in your",
+  "tooltip.upgrade_scrolls.upgrade_scroll_15.line2": "§7main hand to make it unbreakable.",
+
+  "tooltip.upgrade_scrolls.upgrade_scroll_16.line1": "§7- Right click while wearing any helmet to make",
+  "tooltip.upgrade_scrolls.upgrade_scroll_17.line1": "§7- Right click while wearing any chestplate to make",
+  "tooltip.upgrade_scrolls.upgrade_scroll_18.line1": "§7- Right click while wearing any leggings to make",
+  "tooltip.upgrade_scrolls.upgrade_scroll_19.line1": "§7- Right click while wearing any boots to make",
+  "tooltip.upgrade_scrolls.upgrade_scroll_16-19.line2": "§7it unbreakable.",
+
+  "tooltip.upgrade_scrolls.upgrade_scroll_14-19.line3": "§7- Unbreakable prevents your items from being",
+  "tooltip.upgrade_scrolls.upgrade_scroll_14-19.line4": "§7destroyed by scrolls or durability loss.",
+
+  "tooltip.upgrade_scrolls.upgrade_scroll_20.line1": "§7- Right click to inscribe this scroll with a",
+  "tooltip.upgrade_scrolls.upgrade_scroll_20.line2": "§7random unbreakable spell that can empower",
+  "tooltip.upgrade_scrolls.upgrade_scroll_20.line3": "§7your gear.",
+
+  "tooltip.upgrade_scrolls.upgrade_scroll_21.line1": "§7- Right click to cause your next Cursed Scroll",
+  "tooltip.upgrade_scrolls.upgrade_scroll_21.line2": "§7fail to prevent destroying your item.",
+  "tooltip.upgrade_scrolls.upgrade_scroll_21.line3": "§7- If the item has a Golden Scroll applied it will",
+  "tooltip.upgrade_scrolls.upgrade_scroll_21.line4": "§7prevent it's stars from resetting on fail instead.",
+
+  "item.upgrade_scrolls.upgrade_scroll_affix_curio": "§eScroll of Modification [Curio]",
+  "item.upgrade_scrolls.upgrade_scroll_cursed_curio": "§eCursed Scroll of the Guardian [Curio]",
+  "item.upgrade_scrolls.upgrade_scroll_golden_curio": "§eGolden Scroll of the Gods [Curio]",
+
+  "tooltip.upgrade_scrolls.upgrade_scroll_affix_curio.line1": "§7- Right click while holding any curio",
+  "tooltip.upgrade_scrolls.upgrade_scroll_affix_curio.line2": "§7in your main hand to roll a random affix.",
+  "tooltip.upgrade_scrolls.upgrade_scroll_affix_curio.line3": "§7- Affixes add additional stats and attributes",
+  "tooltip.upgrade_scrolls.upgrade_scroll_affix_curio.line4": "§7to your items.",
+  "tooltip.upgrade_scrolls.upgrade_scroll_affix_curio.line5": "§7- Roll chances include:",
+
+  "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line1": "§7- Right click while holding any curio in your",
+  "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line2": "§7main hand to attempt to roll a level of this",
+  "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line3": "§7scroll's curse.",
+  "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line4": "§7- Scroll of the Guardian adds +0.5 armor",
+  "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line5": "§7per level, capping at level 15.",
+  "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line6": "§7- Roll chances include:",
+  "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line7": "§e* 80% Success",
+  "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line8": "§c* 20% Lose Item (Unless Golden Scrolled)",
+
+  "tooltip.upgrade_scrolls.upgrade_scroll_golden_curio.line1": "§7- Right click while holding any curio in your",
+  "tooltip.upgrade_scrolls.upgrade_scroll_golden_curio.line2": "§7main hand to make it unbreakable.",
+  "tooltip.upgrade_scrolls.upgrade_scroll_golden_curio.line3": "§7- Unbreakable prevents your items from being",
+  "tooltip.upgrade_scrolls.upgrade_scroll_golden_curio.line4": "§7destroyed by scrolls or durability loss.",
+
+  "tooltip.upgrade_scrolls.upgrade_scroll.line_junk": "§f* 30% Junk",
+  "tooltip.upgrade_scrolls.upgrade_scroll.line_ordinary": "§a* 20% Ordinary",
+  "tooltip.upgrade_scrolls.upgrade_scroll.line_unique": "§b* 20% Unique",
+  "tooltip.upgrade_scrolls.upgrade_scroll.line_refined": "§5* 15% Refined",
+  "tooltip.upgrade_scrolls.upgrade_scroll.line_godly": "§e* 10% Godly",
+  "tooltip.upgrade_scrolls.upgrade_scroll.line_mythical": "§c* 5% Mythical",
+  "tooltip.upgrade_scrolls.upgrade_scroll.line_fabled": "§0* ?% ???",
+
+  "creativetab.upgrade_scrolls": "Union's Upgrade Scrolls"
+}

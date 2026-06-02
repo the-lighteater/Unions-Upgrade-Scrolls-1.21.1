@@ -1,0 +1,82 @@
+{
+  "name": "junk",
+  "weight": 1.0,
+  "color": "WHITE",
+  "displayName": "Junk",
+  "disabled": false,
+  "tooltip": "tooltip.upgrade_scrolls.upgrade_scroll.line_junk",
+  "finalAffix": false,
+
+  "effects": {
+    "weapon": [
+      {
+        "attribute": "minecraft:generic.attack_speed",
+        "operation": "Multiplying",
+        "value": -0.25,
+        "endString": "swing"
+      },
+      {
+        "attribute": "minecraft:generic.luck",
+        "operation": "Adding",
+        "value": -2,
+        "endString": "luck"
+      }
+    ],
+    "armor": [
+      {
+        "attribute": "minecraft:generic.armor",
+        "operation": "Multiplying",
+        "value": -0.25,
+        "endString": "armor"
+      },
+      {
+        "attribute": "minecraft:generic.luck",
+        "operation": "Adding",
+        "value": -2,
+        "endString": "luck"
+      }
+    ],
+    "shield": [
+      {
+        "attribute": "minecraft:generic.armor_toughness",
+        "operation": "Multiplying",
+        "value": -0.25,
+        "endString": "toughness"
+      },
+      {
+        "attribute": "minecraft:generic.luck",
+        "operation": "Adding",
+        "value": -2,
+        "endString": "luck"
+      }
+    ],
+    "bow": [
+      {
+        "attribute": "minecraft:generic.movement_speed",
+        "operation": "Multiplying",
+        "value": -0.25,
+        "endString": "speed"
+      },
+      {
+        "attribute": "minecraft:generic.luck",
+        "operation": "Adding",
+        "value": -2,
+        "endString": "luck"
+      }
+    ],
+    "curio": [
+      {
+        "attribute": "minecraft:generic.armor",
+        "operation": "Multiplying",
+        "value": -0.05,
+        "endString": "armor"
+      },
+      {
+        "attribute": "minecraft:generic.luck",
+        "operation": "Adding",
+        "value": -0.5,
+        "endString": "luck"
+      }
+    ]
+  }
+}

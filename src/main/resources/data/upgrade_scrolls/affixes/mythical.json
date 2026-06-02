@@ -1,0 +1,112 @@
+{
+  "name": "mythical",
+  "weight": 0.05,
+  "color": "RED",
+  "displayName": "Mythical",
+  "disabled": false,
+  "tooltip": "tooltip.upgrade_scrolls.upgrade_scroll.line_mythical",
+  "finalAffix": false,
+
+  "effects": {
+    "weapon": [
+      {
+        "attribute": "minecraft:generic.attack_speed",
+        "operation": "Multiplying",
+        "value": 0.8,
+        "endString": "swing"
+      },
+      {
+        "attribute": "minecraft:generic.attack_damage",
+        "operation": "Multiplying",
+        "value": 0.4,
+        "endString": "damage"
+      },
+      {
+        "attribute": "minecraft:generic.block_reach",
+        "operation": "Adding",
+        "value": 1,
+        "endString": "reach"
+      }
+    ],
+    "armor": [
+      {
+        "attribute": "minecraft:generic.armor",
+        "operation": "Multiplying",
+        "value": 0.4,
+        "endString": "armor"
+      },
+      {
+        "attribute": "minecraft:generic.max_health",
+        "operation": "Multiplying",
+        "value": 0.2,
+        "endString": "health"
+      },
+      {
+        "attribute": "minecraft:generic.armor_toughness",
+        "operation": "Multiplying",
+        "value": 0.1,
+        "endString": "toughness"
+      }
+    ],
+    "shield": [
+      {
+        "attribute": "minecraft:generic.armor_toughness",
+        "operation": "Multiplying",
+        "value": 0.3,
+        "endString": "toughness"
+      },
+      {
+        "attribute": "minecraft:generic.knockback_resistance",
+        "operation": "Adding",
+        "value": 0.25,
+        "endString": "knockback"
+      },
+      {
+        "attribute": "minecraft:generic.movement_speed",
+        "operation": "Multiplying",
+        "value": 0.2,
+        "endString": "speed"
+      }
+    ],
+    "bow": [
+      {
+        "attribute": "minecraft:generic.movement_speed",
+        "operation": "Multiplying",
+        "value": 0.4,
+        "endString": "speed"
+      },
+      {
+        "attribute": "forge:swim_speed",
+        "operation": "Multiplying",
+        "value": 0.8,
+        "endString": "swim"
+      },
+      {
+        "attribute": "minecraft:generic.attack_knockback",
+        "operation": "Adding",
+        "value": 4,
+        "endString": "knockback"
+      }
+    ],
+    "curio": [
+      {
+        "attribute": "minecraft:generic.armor",
+        "operation": "Multiplying",
+        "value": 0.05,
+        "endString": "armor"
+      },
+      {
+        "attribute": "minecraft:generic.max_health",
+        "operation": "Multiplying",
+        "value": 0.05,
+        "endString": "health"
+      },
+      {
+        "attribute": "minecraft:generic.armor_toughness",
+        "operation": "Multiplying",
+        "value": 0.02,
+        "endString": "toughness"
+      }
+    ]
+  }
+}
