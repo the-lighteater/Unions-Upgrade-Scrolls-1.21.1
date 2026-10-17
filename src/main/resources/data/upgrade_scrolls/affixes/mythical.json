@@ -1,10 +1,9 @@
 {
   "name": "mythical",
   "weight": 0.05,
-  "color": "RED",
+  "colorNum": "0xFFfb5454",
   "displayName": "Mythical",
   "disabled": false,
-  "tooltip": "tooltip.upgrade_scrolls.upgrade_scroll.line_mythical",
   "finalAffix": false,
 
   "effects": {
@@ -22,7 +21,7 @@
         "endString": "damage"
       },
       {
-        "attribute": "minecraft:generic.block_reach",
+        "attribute": "minecraft:player.block_interaction_range",
         "operation": "Adding",
         "value": 1,
         "endString": "reach"
@@ -76,7 +75,7 @@
         "endString": "speed"
       },
       {
-        "attribute": "forge:swim_speed",
+        "attribute": "neoforge:swim_speed",
         "operation": "Multiplying",
         "value": 0.8,
         "endString": "swim"
@@ -108,5 +107,12 @@
         "endString": "toughness"
       }
     ]
-  }
+  },
+  "sounds": [
+    "minecraft:entity.villager.work_weaponsmith",
+    "minecraft:item.totem.use",
+    "minecraft:entity.illusioner.cast_spell",
+    "minecraft:entity.illusioner.mirror_move",
+    "minecraft:entity.ender_dragon.growl"
+  ]
 }

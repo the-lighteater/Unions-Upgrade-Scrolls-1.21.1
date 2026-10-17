@@ -2,11 +2,13 @@ package dot.lighteater.upgrade_scrolls.scroll_procedures;
 
 import dot.lighteater.upgrade_scrolls.Config;
 import dot.lighteater.upgrade_scrolls.data.ModDataComponents;
-import dot.lighteater.upgrade_scrolls.utility.ItemUtility;
+import dot.lighteater.upgrade_scrolls.utility.CursedConfigLoader;
+import dot.lighteater.upgrade_scrolls.utility.ModUtility;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -16,22 +18,22 @@ import net.minecraft.world.level.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
+
 public class CursedScrollProcedure {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public static int execute(Level level, Player player, EquipmentSlot slot, int isShield, int isMagician, int isCurio, boolean serverSide, ItemStack targetItem) {
-        if (level.isClientSide && serverSide) return 0;
-        ItemStack target;
-
+    public static int execute(Level level, Player player, EquipmentSlot slot, int isShield, int isMagician, int isCurio, ItemStack targetItem) {
         boolean armorSlot = slot == EquipmentSlot.HEAD || slot == EquipmentSlot.CHEST ||
                 slot == EquipmentSlot.LEGS || slot == EquipmentSlot.FEET;
-        if (!(serverSide) && armorSlot) return 0;
 
-        if (serverSide) target = player.getItemBySlot(slot);
-        else target = targetItem;
+        ItemStack target =
+                targetItem != null
+                        ? targetItem
+                        : player.getItemBySlot(slot);
 
-        int itemType = ItemUtility.isValidWeaponOrCurio(target);
+        int itemType = ModUtility.isValidWeaponOrCurio(target);
         if (itemType != 0 && armorSlot) return 0;
 
         if (target.isEmpty()) {
@@ -39,12 +41,12 @@ public class CursedScrollProcedure {
             return 0;
         } else if ((itemType == 0) && slot != EquipmentSlot.HEAD && slot != EquipmentSlot.CHEST
                 && slot != EquipmentSlot.LEGS && slot != EquipmentSlot.FEET
-                || (isShield == 0 && ItemUtility.isValidShield(target))) {
+                || (isShield == 0 && ModUtility.isValidShield(target))) {
             return 0;
         }
 
-        if (isShield == 0 && ItemUtility.isValidShield(target)) return 0;
-        else if (isShield != 0 && !(ItemUtility.isValidShield(target))) return 0;
+        if (isShield == 0 && ModUtility.isValidShield(target)) return 0;
+        else if (isShield != 0 && !(ModUtility.isValidShield(target))) return 0;
 
         String slotKey = "_barbarian";
         String type = "Barbarian";
@@ -91,7 +93,7 @@ public class CursedScrollProcedure {
         String holyKey = "upgradescrolls:holy";
         boolean holy = player.getPersistentData().getBoolean(holyKey);
 
-        if (currentStreak >= Config.CURSED_SCROLLS_MAX.get()) {
+        if (currentStreak >= CursedConfigLoader.getMaxLevel()) {
             player.displayClientMessage(Component.literal("This item has reached its maximum streak!"), false);
             return 0;
         } else if (tag.getInt(oppStreakKey) != 0) {
@@ -99,35 +101,16 @@ public class CursedScrollProcedure {
         }
 
         double roll = level.random.nextDouble();
-        double successChance = Config.CURSED_SCROLLS_CHANCE.get();
+        double successChance = CursedConfigLoader.getChance();
         boolean success = roll <= successChance;
 
         if (success) {
-            if (level.isClientSide) {
-                level.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 1f, 1f, false);
-                level.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.VILLAGER_WORK_WEAPONSMITH, SoundSource.PLAYERS, 1f, 1f, false);
-                level.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.ILLUSIONER_CAST_SPELL, SoundSource.PLAYERS, 1f, 1f, false);
-                level.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.ILLUSIONER_MIRROR_MOVE, SoundSource.PLAYERS, 1f, 1f, false);
-            } else {
-                level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 1f, 1f);
-                level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.VILLAGER_WORK_WEAPONSMITH, SoundSource.PLAYERS, 1f, 1f);
-                level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ILLUSIONER_CAST_SPELL, SoundSource.PLAYERS, 1f, 1f);
-                level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ILLUSIONER_MIRROR_MOVE, SoundSource.PLAYERS, 1f, 1f);
-            }
+            playCursedSFX(CursedConfigLoader.getSuccessSounds(), level, player);
             int newStreak = currentStreak + 1;
-            if (newStreak % 5 == 0) {
-                if (level.isClientSide)
-                    level.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.ENDER_DRAGON_GROWL, SoundSource.PLAYERS, 1f, 1f, false);
-                else
-                    level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENDER_DRAGON_GROWL, SoundSource.PLAYERS, 1f, 1f);
-                if (newStreak == Config.CURSED_SCROLLS_MAX.get()) {
-                    if (level.isClientSide) {
-                        level.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.LIGHTNING_BOLT_IMPACT, SoundSource.PLAYERS, 1f, 1f, false);
-                        level.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.ZOMBIE_CONVERTED_TO_DROWNED, SoundSource.PLAYERS, 1f, 1f, false);
-                    } else {
-                        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.LIGHTNING_BOLT_IMPACT, SoundSource.PLAYERS, 1f, 1f);
-                        level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ZOMBIE_CONVERTED_TO_DROWNED, SoundSource.PLAYERS, 1f, 1f);
-                    }
+            if (CursedConfigLoader.isMilestone(newStreak)) {
+                playCursedSFX(CursedConfigLoader.getMilestoneSound(), level, player);
+                if (newStreak == CursedConfigLoader.getMaxLevel()) {
+                    playCursedSFX(CursedConfigLoader.getPerfectedSounds(), level, player);
                 }
             }
             tag.putInt(streakKey, newStreak);
@@ -141,13 +124,13 @@ public class CursedScrollProcedure {
             for (Player p : level.players()) {
                 p.displayClientMessage(message, false);
             }
-            if (newStreak == Config.CURSED_SCROLLS_MAX.get()) {
+            if (newStreak == CursedConfigLoader.getMaxLevel()) {
                 message = Component.literal(player.getName().getString())
                         .append(Component.literal(" has perfected their ").withStyle(ChatFormatting.WHITE))
                         .append(target.getHoverName().copy())
                         .append(Component.literal(" at ").withStyle(ChatFormatting.WHITE))
                         .append(Component.literal(type + " +").withStyle(ChatFormatting.YELLOW))
-                        .append(Component.literal(String.valueOf(Config.CURSED_SCROLLS_MAX.get())).withStyle(ChatFormatting.YELLOW));
+                        .append(Component.literal(String.valueOf(CursedConfigLoader.getMaxLevel())).withStyle(ChatFormatting.YELLOW));
 
 
                 for (Player p : level.players()) {
@@ -157,31 +140,18 @@ public class CursedScrollProcedure {
             return 2;
 
         } else {
-            if (level.isClientSide) {
-                level.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.EVOKER_PREPARE_SUMMON, SoundSource.PLAYERS, 1f, 1f, false);
-                level.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.LIGHTNING_BOLT_IMPACT, SoundSource.PLAYERS, 1f, 1f, false);
-                level.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.FIRE_EXTINGUISH, SoundSource.PLAYERS, 1f, 1f, false);
-                level.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.IRON_GOLEM_REPAIR, SoundSource.PLAYERS, 1f, 1f, false);
-            } else {
-                level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.EVOKER_PREPARE_SUMMON, SoundSource.PLAYERS, 1f, 1f);
-                level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.LIGHTNING_BOLT_IMPACT, SoundSource.PLAYERS, 1f, 1f);
-                level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.FIRE_EXTINGUISH, SoundSource.PLAYERS, 1f, 1f);
-                level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.IRON_GOLEM_REPAIR, SoundSource.PLAYERS, 1f, 1f);
-            }
+            playCursedSFX(CursedConfigLoader.getFailureSounds(), level, player);
+
             Component message = Component.literal(player.getName().getString()).withStyle(ChatFormatting.RED)
                     .append(Component.literal(" failed to roll their ").withStyle(ChatFormatting.RED))
                     .append(target.getHoverName().copy().withStyle(ChatFormatting.RED))
                     .append(Component.literal(" at " + type + " +" + currentStreak).withStyle(ChatFormatting.RED));
 
-
             if (holy && unbreakable) {
                 player.displayClientMessage(Component.literal("Your Holy Scroll prevented your item's stars resetting!")
                         .withStyle(ChatFormatting.GREEN), false);
                 player.getPersistentData().putBoolean(holyKey, false);
-                holy = player.getPersistentData().getBoolean(holyKey);
-                if (level.isClientSide)                player.level().playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.ANVIL_HIT, SoundSource.PLAYERS, 1.0F, 1.2F, false);
-                else player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ANVIL_HIT, SoundSource.PLAYERS, 1.0F, 1.2F);
-
+                playCursedSFX(CursedConfigLoader.getHolyProtectionSound(), level, player);
             } else if (holy) {
                 tag.remove(streakKey);
                 tag.remove(tagKey);
@@ -214,4 +184,14 @@ public class CursedScrollProcedure {
                 return 1;
             }
         }
+
+
+    private static void playCursedSFX(List<String> soundIDs, Level level, Player player) {
+        for (String soundID : soundIDs) {
+            SoundEvent sound = ModUtility.getSoundEvent(soundID);
+            if (sound == null) continue;
+
+            level.playSound(null, player.getX(), player.getY(), player.getZ(), sound, SoundSource.PLAYERS, 1f, 1f);
+        }
+    }
 }

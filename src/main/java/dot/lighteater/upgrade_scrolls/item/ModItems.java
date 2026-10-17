@@ -1,15 +1,16 @@
 package dot.lighteater.upgrade_scrolls.item;
 
-import dot.lighteater.upgrade_scrolls.UnionsUpgradeScrolls;
+import dot.lighteater.upgrade_scrolls.UpgradeScrolls;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModItems {
     public static final DeferredRegister.Items ITEMS =
-            DeferredRegister.createItems(UnionsUpgradeScrolls.MODID);
+            DeferredRegister.createItems(UpgradeScrolls.MODID);
 
     public static final DeferredItem<Item> UPGRADE_SCROLL_0 = ITEMS.register("upgrade_scroll_0",
             () -> new UpgradeScroll_Item(
@@ -264,43 +265,59 @@ public class ModItems {
                     "tooltip.upgrade_scrolls.upgrade_scroll_21.line4"
             ));
 
-    public static final DeferredItem<Item> UPGRADE_SCROLL_22 = ITEMS.register("upgrade_scroll_affix_curio",
-            () -> new UpgradeScroll_Item(
-                    new Item.Properties()
-                            .stacksTo(64)
-                            .rarity(Rarity.COMMON), 22,
-                    "tooltip.upgrade_scrolls.upgrade_scroll_affix_curio.line1",
-                    "tooltip.upgrade_scrolls.upgrade_scroll_affix_curio.line2",
-                    "tooltip.upgrade_scrolls.upgrade_scroll_affix_curio.line3",
-                    "tooltip.upgrade_scrolls.upgrade_scroll_affix_curio.line4",
-                    "tooltip.upgrade_scrolls.upgrade_scroll_affix_curio.line5"
-            ));
-    public static final DeferredItem<Item> UPGRADE_SCROLL_23 = ITEMS.register("upgrade_scroll_cursed_curio",
-            () -> new UpgradeScroll_Item(
-                    new Item.Properties()
-                            .stacksTo(64)
-                            .rarity(Rarity.COMMON), 23,
-                    "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line1",
-                    "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line2",
-                    "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line3",
-                    "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line4",
-                    "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line5",
-                    "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line6",
-                    "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line7",
-                    "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line8"
-            ));
-    public static final DeferredItem<Item> UPGRADE_SCROLL_24 = ITEMS.register("upgrade_scroll_golden_curio",
-            () -> new UpgradeScroll_Item(
-                    new Item.Properties()
-                            .stacksTo(64)
-                            .rarity(Rarity.COMMON), 24,
-                    "tooltip.upgrade_scrolls.upgrade_scroll_golden_curio.line1",
-                    "tooltip.upgrade_scrolls.upgrade_scroll_golden_curio.line2",
-                    "tooltip.upgrade_scrolls.upgrade_scroll_golden_curio.line3",
-                    "tooltip.upgrade_scrolls.upgrade_scroll_golden_curio.line4"
-            ));
+    public static DeferredItem<Item> UPGRADE_SCROLL_22;
+    public static DeferredItem<Item> UPGRADE_SCROLL_23;
+    public static DeferredItem<Item> UPGRADE_SCROLL_24;
+
+    public static void registerCurioItems() {
+        if (!ModList.get().isLoaded("curios")) {
+            return;
+        }
+
+        UPGRADE_SCROLL_22 = ITEMS.register("upgrade_scroll_affix_curio",
+                () -> new UpgradeScroll_Item(
+                        new Item.Properties()
+                                .stacksTo(64)
+                                .rarity(Rarity.COMMON), 22,
+                        "tooltip.upgrade_scrolls.upgrade_scroll_affix_curio.line1",
+                        "tooltip.upgrade_scrolls.upgrade_scroll_affix_curio.line2",
+                        "tooltip.upgrade_scrolls.upgrade_scroll_affix_curio.line3",
+                        "tooltip.upgrade_scrolls.upgrade_scroll_affix_curio.line4",
+                        "tooltip.upgrade_scrolls.upgrade_scroll_affix_curio.line5"
+                ));
+
+        UPGRADE_SCROLL_23 = ITEMS.register("upgrade_scroll_cursed_curio",
+                () -> new UpgradeScroll_Item(
+                        new Item.Properties()
+                                .stacksTo(64)
+                                .rarity(Rarity.COMMON), 23,
+                        "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line1",
+                        "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line2",
+                        "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line3",
+                        "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line4",
+                        "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line5",
+                        "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line6",
+                        "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line7",
+                        "tooltip.upgrade_scrolls.upgrade_scroll_cursed_curio.line8"
+                ));
+
+        UPGRADE_SCROLL_24 = ITEMS.register("upgrade_scroll_golden_curio",
+                () -> new UpgradeScroll_Item(
+                        new Item.Properties()
+                                .stacksTo(64)
+                                .rarity(Rarity.COMMON), 24,
+                        "tooltip.upgrade_scrolls.upgrade_scroll_golden_curio.line1",
+                        "tooltip.upgrade_scrolls.upgrade_scroll_golden_curio.line2",
+                        "tooltip.upgrade_scrolls.upgrade_scroll_golden_curio.line3",
+                        "tooltip.upgrade_scrolls.upgrade_scroll_golden_curio.line4"
+                ));
+    }
 
     public static void register(IEventBus eventBus) {
+        if (ModList.get().isLoaded("curios")) {
+            registerCurioItems();
+        }
+
         ITEMS.register(eventBus);
     }
 }

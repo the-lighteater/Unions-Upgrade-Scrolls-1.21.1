@@ -1,10 +1,9 @@
 {
   "name": "junk",
-  "weight": 1.0,
-  "color": "WHITE",
+  "weight": 0.3,
+  "colorNum": "0xFFFFFFFF",
   "displayName": "Junk",
   "disabled": false,
-  "tooltip": "tooltip.upgrade_scrolls.upgrade_scroll.line_junk",
   "finalAffix": false,
 
   "effects": {
@@ -78,5 +77,11 @@
         "endString": "luck"
       }
     ]
-  }
+  },
+  "sounds": [
+    "minecraft:entity.villager.work_weaponsmith",
+    "minecraft:item.totem.use",
+    "minecraft:entity.illusioner.cast_spell",
+    "minecraft:entity.illusioner.mirror_move"
+  ]
 }

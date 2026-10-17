@@ -89,12 +89,6 @@ Contains 24 unique scrolls for upgrading your armor, weapons, shield, and now ev
     versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="BOTH"
-[[dependencies.${mod_id}]]
-    modId="curios"
-    mandatory=true
-    versionRange="${curios_version_range}"
-    ordering="NONE"
-    side="BOTH"
 
 # Features are specific properties of the game environment, that you may want to declare you require. This example declares
 # that your mod requires GL version 3.2 or higher. Other features will be added. They are side aware so declaring this won't

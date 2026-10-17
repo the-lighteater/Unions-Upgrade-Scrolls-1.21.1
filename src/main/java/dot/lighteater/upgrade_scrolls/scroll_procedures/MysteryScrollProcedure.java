@@ -1,5 +1,6 @@
 package dot.lighteater.upgrade_scrolls.scroll_procedures;
 
+import dot.lighteater.upgrade_scrolls.UpgradeScrolls;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.sounds.SoundEvents;
@@ -20,34 +21,51 @@ public class MysteryScrollProcedure {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    private static final List<Supplier<Item>> SCROLL_POOL = List.of(
-            ModItems.UPGRADE_SCROLL_1,
-            ModItems.UPGRADE_SCROLL_2,
-            ModItems.UPGRADE_SCROLL_3,
-            ModItems.UPGRADE_SCROLL_4,
-            ModItems.UPGRADE_SCROLL_5,
-            ModItems.UPGRADE_SCROLL_6,
-            ModItems.UPGRADE_SCROLL_7,
-            ModItems.UPGRADE_SCROLL_8,
-            ModItems.UPGRADE_SCROLL_9,
-            ModItems.UPGRADE_SCROLL_10,
-            ModItems.UPGRADE_SCROLL_11,
-            ModItems.UPGRADE_SCROLL_12,
-            ModItems.UPGRADE_SCROLL_13,
-            ModItems.UPGRADE_SCROLL_21,
-            ModItems.UPGRADE_SCROLL_22,
-            ModItems.UPGRADE_SCROLL_23
-    );
-    private static final List<Supplier<Item>> GOLDEN_SCROLL_POOL = List.of(
-            ModItems.UPGRADE_SCROLL_14,
-            ModItems.UPGRADE_SCROLL_15,
-            ModItems.UPGRADE_SCROLL_16,
-            ModItems.UPGRADE_SCROLL_17,
-            ModItems.UPGRADE_SCROLL_18,
-            ModItems.UPGRADE_SCROLL_19,
-            ModItems.UPGRADE_SCROLL_24
-    );
+    private static List<Supplier<Item>> createScrollPool() {
+        List<Supplier<Item>> pool = new java.util.ArrayList<>(List.of(
+                ModItems.UPGRADE_SCROLL_1,
+                ModItems.UPGRADE_SCROLL_2,
+                ModItems.UPGRADE_SCROLL_3,
+                ModItems.UPGRADE_SCROLL_4,
+                ModItems.UPGRADE_SCROLL_5,
+                ModItems.UPGRADE_SCROLL_6,
+                ModItems.UPGRADE_SCROLL_7,
+                ModItems.UPGRADE_SCROLL_8,
+                ModItems.UPGRADE_SCROLL_9,
+                ModItems.UPGRADE_SCROLL_10,
+                ModItems.UPGRADE_SCROLL_11,
+                ModItems.UPGRADE_SCROLL_12,
+                ModItems.UPGRADE_SCROLL_13,
+                ModItems.UPGRADE_SCROLL_21
+        ));
 
+        if (UpgradeScrolls.curioLoaded) {
+            pool.add(ModItems.UPGRADE_SCROLL_22);
+            pool.add(ModItems.UPGRADE_SCROLL_23);
+        }
+
+        return List.copyOf(pool);
+    }
+
+    private static List<Supplier<Item>> createGoldenScrollPool() {
+        List<Supplier<Item>> pool = new java.util.ArrayList<>(List.of(
+                ModItems.UPGRADE_SCROLL_14,
+                ModItems.UPGRADE_SCROLL_15,
+                ModItems.UPGRADE_SCROLL_16,
+                ModItems.UPGRADE_SCROLL_17,
+                ModItems.UPGRADE_SCROLL_18,
+                ModItems.UPGRADE_SCROLL_19
+        ));
+
+        if (UpgradeScrolls.curioLoaded) {
+            pool.add(ModItems.UPGRADE_SCROLL_24);
+        }
+
+        return List.copyOf(pool);
+    }
+
+    private static final List<Supplier<Item>> SCROLL_POOL = createScrollPool();
+    private static final List<Supplier<Item>> GOLDEN_SCROLL_POOL = createGoldenScrollPool();
 
     public static boolean execute(Level level, Player player, int isGolden) {
         if (!(level instanceof ServerLevel serverLevel)) return false;

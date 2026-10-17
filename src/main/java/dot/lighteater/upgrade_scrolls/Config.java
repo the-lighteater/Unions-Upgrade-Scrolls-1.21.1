@@ -22,15 +22,6 @@ public class Config {
     public static final ModConfigSpec.ConfigValue<Integer> MYSTERY_SCROLL_DROP_AMOUNT = BUILDER.comment("The upper limit of mystery scrolls dropped from spawners")
             .define("Max amount of scrolls dropped", 3);
 
-    public static final ModConfigSpec.ConfigValue<Integer> CURSED_SCROLLS_MAX = BUILDER.comment("The limit of cursed scrolls")
-            .define("Max cursed scroll level", 15);
-    public static final ModConfigSpec.ConfigValue<Double> CURSED_SCROLLS_CHANCE = BUILDER.comment("The chances for cursed scrolls")
-            .defineInRange("Cursed scroll chances", .8, 0, 1);
-
-
-    public static final ModConfigSpec.ConfigValue<Boolean> ALLOW_BOTH_HANDS = BUILDER.comment("Allows affixes for weapons, bows, and shields to work in both hands. Disabled means it will only work in one hand.")
-            .define("Allow both hands affixes", false);
-
     static final ModConfigSpec SPEC = BUILDER.build();
 
     private static boolean validateItemName(final Object obj) {

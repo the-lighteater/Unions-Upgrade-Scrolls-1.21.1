@@ -1,14 +1,17 @@
 package dot.lighteater.upgrade_scrolls.utility;
 
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.fml.ModList;
 
-public class ItemUtility {
+public class ModUtility {
     private static final ResourceLocation[] ADDITIONAL_WEAPON_TAGS = new ResourceLocation[] {
             ResourceLocation.fromNamespaceAndPath("forge", "swords"),
             ResourceLocation.fromNamespaceAndPath("forge", "tools/swords"),
@@ -259,7 +262,9 @@ public class ItemUtility {
                 return true;
             }
         }
-        return false;
+
+        return stack.getItem() instanceof ArmorItem armor
+                && armor.getEquipmentSlot() == EquipmentSlot.HEAD;
     }
 
     public static boolean isValidChestplate(ItemStack stack) {
@@ -268,7 +273,9 @@ public class ItemUtility {
                 return true;
             }
         }
-        return false;
+
+        return stack.getItem() instanceof ArmorItem armor
+                && armor.getEquipmentSlot() == EquipmentSlot.CHEST;
     }
     public static boolean isValidLeggings(ItemStack stack) {
         for (ResourceLocation rl : ADDITIONAL_LEGGINGS_TAGS) {
@@ -276,7 +283,9 @@ public class ItemUtility {
                 return true;
             }
         }
-        return false;
+
+        return stack.getItem() instanceof ArmorItem armor
+                && armor.getEquipmentSlot() == EquipmentSlot.LEGS;
     }
     public static boolean isValidBoots(ItemStack stack) {
         for (ResourceLocation rl : ADDITIONAL_BOOTS_TAGS) {
@@ -284,6 +293,14 @@ public class ItemUtility {
                 return true;
             }
         }
-        return false;
+
+        return stack.getItem() instanceof ArmorItem armor
+                && armor.getEquipmentSlot() == EquipmentSlot.FEET;
+    }
+
+    public static SoundEvent getSoundEvent(String soundID) {
+        ResourceLocation soundId = ResourceLocation.parse(soundID);
+        SoundEvent sound = BuiltInRegistries.SOUND_EVENT.get(soundId);
+        return (!(sound == null)) ? sound : null;
     }
 }

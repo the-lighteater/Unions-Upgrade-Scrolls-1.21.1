@@ -1,10 +1,9 @@
 {
   "name": "refined",
   "weight": 0.15,
-  "color": "DARK_PURPLE",
+  "colorNum": "0xFFa800a7",
   "displayName": "Refined",
   "disabled": false,
-  "tooltip": "tooltip.upgrade_scrolls.upgrade_scroll.line_refined",
   "finalAffix": false,
 
   "effects": {
@@ -58,7 +57,7 @@
         "endString": "speed"
       },
       {
-        "attribute": "forge:swim_speed",
+        "attribute": "neoforge:swim_speed",
         "operation": "Multiplying",
         "value": 0.4,
         "endString": "swim"
@@ -78,5 +77,11 @@
         "endString": "health"
       }
     ]
-  }
+  },
+  "sounds": [
+    "minecraft:entity.villager.work_weaponsmith",
+    "minecraft:item.totem.use",
+    "minecraft:entity.illusioner.cast_spell",
+    "minecraft:entity.illusioner.mirror_move"
+  ]
 }

@@ -1,15 +1,16 @@
 package dot.lighteater.upgrade_scrolls.scroll_procedures;
 
+import dot.lighteater.upgrade_scrolls.affix.AffixData;
+import dot.lighteater.upgrade_scrolls.affix.AffixLoader;
 import dot.lighteater.upgrade_scrolls.data.ModDataComponents;
-import dot.lighteater.upgrade_scrolls.utility.ItemUtility;
-import net.minecraft.ChatFormatting;
+import dot.lighteater.upgrade_scrolls.utility.ModUtility;
 import net.minecraft.core.component.DataComponentType;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -31,28 +32,26 @@ public class UpgradeScrollProcedure {
 
     private static final Logger LOGGER = LogManager.getLogger();
 
-    public static boolean execute(Level level, Player player, EquipmentSlot slot, int isShield, int isCurio, boolean serverSide, ItemStack targetItem) {
-        if (level.isClientSide && serverSide) return false;
-        ItemStack target;
-
+    public static boolean execute(Level level, Player player, EquipmentSlot slot, int isShield, int isCurio, ItemStack targetItem) {
         boolean armorSlot = slot == EquipmentSlot.HEAD || slot == EquipmentSlot.CHEST ||
                 slot == EquipmentSlot.LEGS || slot == EquipmentSlot.FEET;
-        if (!(serverSide) && armorSlot) return false;
 
-        if (serverSide) target = player.getItemBySlot(slot);
-        else target = targetItem;
+        ItemStack target =
+                targetItem != null
+                        ? targetItem
+                        : player.getItemBySlot(slot);
 
-        int itemType = ItemUtility.isValidWeaponOrCurio(target);
+        int itemType = ModUtility.isValidWeaponOrCurio(target);
         if (itemType != 0 && armorSlot) return false;
         if (target.isEmpty()) {
             player.displayClientMessage(Component.literal("No item equipped in " + slot.getName()), true);
             return false;
         } else if ((itemType == 0) && slot != EquipmentSlot.HEAD && slot != EquipmentSlot.CHEST
                 && slot != EquipmentSlot.LEGS && slot != EquipmentSlot.FEET
-                || (isShield == 0 && ItemUtility.isValidShield(target))) { return false;}
+                || (isShield == 0 && ModUtility.isValidShield(target))) { return false;}
 
-        if (isShield == 0 && ItemUtility.isValidShield(target)) return false;
-        else if (isShield != 0 && !(ItemUtility.isValidShield(target))) return false;
+        if (isShield == 0 && ModUtility.isValidShield(target)) return false;
+        else if (isShield != 0 && !(ModUtility.isValidShield(target))) return false;
 
         String slotKey = "";
         if (slot == EquipmentSlot.HEAD) {
@@ -92,34 +91,13 @@ public class UpgradeScrollProcedure {
         target.set(ModDataComponents.AFFIX_DATA.get(), tag);
         Component message = buildMessage(player, target, affix);
 
-        if (level.isClientSide) {
-            level.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.VILLAGER_WORK_WEAPONSMITH, SoundSource.PLAYERS, 1f, 1f, false);
-            level.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 1f, 1f, false);
-            level.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.ILLUSIONER_CAST_SPELL, SoundSource.PLAYERS, 1f, 1f, false);
-            level.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.ILLUSIONER_MIRROR_MOVE, SoundSource.PLAYERS, 1f, 1f, false);
-        } else {
-            level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.VILLAGER_WORK_WEAPONSMITH, SoundSource.PLAYERS, 1f, 1f);
-            level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 1f, 1f);
-            level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ILLUSIONER_CAST_SPELL, SoundSource.PLAYERS, 1f, 1f);
-            level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ILLUSIONER_MIRROR_MOVE, SoundSource.PLAYERS, 1f, 1f);
-        }
+        for (String soundID : affix.getSounds()) {
+            ResourceLocation soundRL = ResourceLocation.tryParse(soundID);
+            if (soundRL == null) continue;
+            var soundEvent = BuiltInRegistries.SOUND_EVENT.get(soundRL);
+            if (soundEvent == null) continue;
 
-        switch (affix.getName()) {
-            case "mythical" -> {
-                if (level.isClientSide) level.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.ENDER_DRAGON_GROWL, SoundSource.PLAYERS, 1f, 1f, false);
-                else level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENDER_DRAGON_GROWL, SoundSource.PLAYERS, 1f, 1f);
-            }
-            case "fabled" -> {
-                if (level.isClientSide) {
-                    level.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.ENDER_DRAGON_GROWL, SoundSource.PLAYERS, 1f, 1f, false);
-                    level.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.LIGHTNING_BOLT_IMPACT, SoundSource.PLAYERS, 1f, 1f, false);
-                    level.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.ZOMBIE_CONVERTED_TO_DROWNED, SoundSource.PLAYERS, 1f, 1f, false);
-                } else {
-                    level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENDER_DRAGON_GROWL, SoundSource.PLAYERS, 1f, 1f);
-                    level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.LIGHTNING_BOLT_IMPACT, SoundSource.PLAYERS, 1f, 1f);
-                    level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ZOMBIE_CONVERTED_TO_DROWNED, SoundSource.PLAYERS, 1f, 1f);
-                }
-            }
+            level.playSound(null, player.getX(), player.getY(), player.getZ(), soundEvent, SoundSource.PLAYERS, 1f, 1f);
         }
 
         for (Player p : level.players()) {
@@ -168,15 +146,11 @@ public class UpgradeScrollProcedure {
     }
 
     public static Component buildMessage(Player player, ItemStack stack, AffixData affix) {
-
-        ChatFormatting color = affix.getColor();
-        if (color == null) color = ChatFormatting.WHITE;
-
         MutableComponent base = Component.literal(player.getName().getString())
                 .append(Component.literal(" rolled the "))
                 .append(Component.literal(affix.getName().toUpperCase())
                         .setStyle(Style.EMPTY.withObfuscated(affix.getName().equals("fabled")))
-                        .withStyle(affix.getColor()))
+                        .withStyle(style -> style.withColor(affix.getColorNumber())))
                 .append(Component.literal(" affix on their "))
                 .append(stack.getHoverName().copy());
 

@@ -1,11 +1,11 @@
 {
   "name": "fabled",
   "weight": 0.005,
-  "color": "BLACK",
+  "colorNum": "0xFF000000",
   "displayName": "Fabled",
   "disabled": false,
-  "tooltip": "tooltip.upgrade_scrolls.upgrade_scroll.line_fabled",
   "finalAffix": true,
+  "hidden": true,
 
   "effects": {
     "weapon": [
@@ -22,7 +22,7 @@
         "endString": "damage"
       },
       {
-        "attribute": "forge:block_reach",
+        "attribute": "minecraft:player.block_interaction_range",
         "operation": "Adding",
         "value": 1.5,
         "endString": "reach"
@@ -94,7 +94,7 @@
         "endString": "speed"
       },
       {
-        "attribute": "forge:swim_speed",
+        "attribute": "neoforge:swim_speed",
         "operation": "Multiplying",
         "value": 1,
         "endString": "swim"
@@ -138,5 +138,14 @@
         "endString": "luck"
       }
     ]
-  }
+  },
+  "sounds": [
+    "minecraft:entity.villager.work_weaponsmith",
+    "minecraft:item.totem.use",
+    "minecraft:entity.illusioner.cast_spell",
+    "minecraft:entity.illusioner.mirror_move",
+    "minecraft:entity.ender_dragon.growl",
+    "minecraft:entity.lightning_bolt.impact",
+    "minecraft:entity.zombie.converted_to_drowned"
+  ]
 }

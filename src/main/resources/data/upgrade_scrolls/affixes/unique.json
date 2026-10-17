@@ -1,10 +1,9 @@
 {
   "name": "unique",
   "weight": 0.2,
-  "color": "BLUE",
+  "colorNum": "0xFF5454fb",
   "displayName": "Unique",
   "disabled": false,
-  "tooltip": "tooltip.upgrade_scrolls.upgrade_scroll.line_unique",
   "finalAffix": false,
 
   "effects": {
@@ -58,7 +57,7 @@
         "endString": "speed"
       },
       {
-        "attribute": "forge:swim_speed",
+        "attribute": "neoforge:swim_speed",
         "operation": "Multiplying",
         "value": 0.2,
         "endString": "swim"
@@ -78,5 +77,11 @@
         "endString": "health"
       }
     ]
-  }
+  },
+  "sounds": [
+    "minecraft:entity.villager.work_weaponsmith",
+    "minecraft:item.totem.use",
+    "minecraft:entity.illusioner.cast_spell",
+    "minecraft:entity.illusioner.mirror_move"
+  ]
 }
