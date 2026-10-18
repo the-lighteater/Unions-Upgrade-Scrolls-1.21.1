@@ -91,8 +91,8 @@ public class UpgradeScroll_Item extends Item {
 
     private static void sendScrollAnimation(Player player, ItemStack stack) {
         if (player instanceof ServerPlayer serverPlayer) {
-                        PacketDistributor.sendToPlayer(
-                                serverPlayer, new ScrollAnimationPacket(stack.copy()));
+            PacketDistributor.sendToPlayer(
+                    serverPlayer, new ScrollAnimationPacket(stack.copy()));
         }
     }
 

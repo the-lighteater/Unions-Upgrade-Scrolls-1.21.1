@@ -1,6 +1,7 @@
 
 package dot.lighteater.upgrade_scrolls.network;
 
+import dot.lighteater.upgrade_scrolls.ClientConfig;
 import dot.lighteater.upgrade_scrolls.UpgradeScrolls;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.RegistryFriendlyByteBuf;
@@ -44,9 +45,11 @@ public record ScrollAnimationPacket(ItemStack stack)
             Minecraft minecraft = Minecraft.getInstance();
 
             if (minecraft.player != null) {
-                minecraft.gameRenderer.displayItemActivation(
-                        payload.stack()
-                );
+                if (ClientConfig.ALLOW_ANIMATION.get()) {
+                    minecraft.gameRenderer.displayItemActivation(
+                            payload.stack()
+                    );
+                }
             }
         });
     }
